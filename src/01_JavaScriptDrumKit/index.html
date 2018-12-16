@@ -1,0 +1,81 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+  <ul class="keys">
+    <li data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">cymbal1</span>
+    </li>
+    <li data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">cymbal2</span>
+    </li>
+    <li data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">cymbal3</span>
+    </li>
+    <li data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">cymbal4</span>
+    </li>
+    <li data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">kick1</span>
+    </li>
+    <li data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">kick2</span>
+    </li>
+    <li data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare1</span>
+    </li>
+    <li data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom1</span>
+    </li>
+    <li data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tom2</span>
+    </li>
+  </ul>
+
+  <audio data-key="65" src="sounds/cymbal1.aif.mp3"></audio>
+  <audio data-key="83" src="sounds/cymbal2.aif.mp3"></audio>
+  <audio data-key="68" src="sounds/cymbal3.aif.mp3"></audio>
+  <audio data-key="70" src="sounds/cymbal4.aif.mp3"></audio>
+  <audio data-key="71" src="sounds/kick1.aif.mp3"></audio>
+  <audio data-key="72" src="sounds/kick2.aif.mp3"></audio>
+  <audio data-key="74" src="sounds/snare1.aif.mp3"></audio>
+  <audio data-key="75" src="sounds/tom1.aif.mp3"></audio>
+  <audio data-key="76" src="sounds/tom2.aif.mp3"></audio>
+
+  <script>
+
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+      audio.currentTime = 0;
+      audio.play();
+      key.classList.add('playing');
+    }
+
+    function removeTransition(e) {
+      if(e.propertyName !== 'transform') return;
+      this.classList.remove('playing');
+    }
+
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+  </script>
+</body>
+</html>
