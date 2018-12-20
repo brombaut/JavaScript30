@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <p onclick="makeGreen()">Break Down</p>
+
+<script>
+  const dogs = [
+    {name: 'Snickers', age: 2},
+    {name: 'Hugo', age: 8}
+  ];
+
+  function makeGreen() {
+    const p = document.querySelector('p');
+    p.style.color = '#BADA55';
+    p.style.fontSize = '50px';
+  }
+
+  console.error('Error');
+  console.info('Info');
+
+  const p = document.querySelector('p');
+  console.assert(p.classList.contains('ouch'), 'That is wrong');
+
+  // console.clear();
+  console.log(p);
+  console.dir(p);
+  dogs.forEach(dog => {
+    console.group(`${dog.name}`);
+    console.log(`This is ${dog.name}`);
+    console.log(`${dog.name} is ${dog.age} years old`);
+    console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+    console.groupEnd(`${dog.name}`);
+  });
+
+  console.count('Wes');
+  console.count('Wes');
+  console.count('Wes');
+ 
+  console.time('fetching data');
+  console.timeEnd('fetching data');
+</script>
+</body>
+</html>
